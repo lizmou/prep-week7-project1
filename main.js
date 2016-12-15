@@ -15,3 +15,21 @@ Have fun!
 =======================================================
 */
 
+
+function getMovie(name){
+	var params = {
+		t:name
+	}
+	return $.get( "http://www.omdbapi.com/", params);
+}
+
+document.getElementById("search").addEventListener("click",function(){
+	var name = document.getElementById("movie-box").value;
+	var p = getMovie(name);
+	p.done(function( data ) {
+		var title = data.Title;
+  		var rating = data.Rated;
+  		document.getElementById("title").innerHTML = title;
+  		document.getElementById("rating").innerHTML = rating;
+	});
+})
